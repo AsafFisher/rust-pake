@@ -503,21 +503,3 @@ impl Pake<SIEC255Params> {
         Ok(())
     }
 }
-
-#[cfg(test)]
-mod test {
-    use super::Pake;
-
-    #[test]
-    fn test_impl() {
-        let _a = Pake::new(super::Role::Sender, None);
-
-        // let msg: Message = Message::Pake {
-        //     bytes: base64::engine::general_purpose::STANDARD
-        //         .encode(&serde_json::to_string(&a.pub_pake).unwrap()),
-        //     bytes2: "hello".to_string(),
-        // };
-        // let msg_json = serde_json::to_string(&msg).unwrap();
-        // println!("{msg_json}");
-    }
-}
