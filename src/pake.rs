@@ -223,6 +223,8 @@ impl<'de> DeserializeAs<'de, BigInt> for NumberFromString {
     }
 }
 
+/// The public key of the PAKE.
+/// this is the public key that is sent to the other party
 #[serde_as]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct PakePubKey {
@@ -305,6 +307,14 @@ fn bigint_to_signed_bytes_be(num: &BigInt) -> Vec<u8> {
 ///
 /// ```
 impl Pake<SIEC255Params> {
+    /// Create a new Pake instance
+    /// ```
+    /// use rust_pake::pake::{Pake, Role};
+    /// let pake = Pake::new(Role::Sender, Some("private_key_a".as_bytes()));
+    /// ```
+    /// # Arguments
+    /// * `role` - The role of the instance
+    /// * `key` - The private key of the instance
     pub fn new(role: Role, key: Option<&[u8]>) -> Self {
         let weak_key = key.unwrap_or(&[1u8, 2, 3]);
         let u_u =
@@ -391,6 +401,9 @@ impl Pake<SIEC255Params> {
             }
         }
     }
+    /// Update the instance with the public key of the other party
+    /// # Arguments
+    /// * `key` - The public key of the other party
     pub fn update(&mut self, key: PakePubKey) -> Result<(), Error> {
         if self.pub_pake.role == key.role {
             return Err(Error::SameRole);
