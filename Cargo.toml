@@ -3,7 +3,7 @@ name = "rust-pake"
 description = "An alternative implementation in rust for @schollz's pake library"
 repository = "https://github.com/AsafFisher/rust-pake/"
 license = "MIT"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
