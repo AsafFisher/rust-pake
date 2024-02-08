@@ -11,16 +11,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
-      - name: Rust Release
-        uses: manoadamro/rust-release@v1
-        with:
-          owner: ${{ github.repository_owner }}
-          repo: ${{ github.event.repository.name }}
-          token: ${{ secrets.GITHUB_TOKEN }}  # Automatically provided by GitHub
-          cargo: Cargo.toml  # Path to your Cargo.toml, if it's in the root, this can be omitted
-          dry_run: false  # Set to true for testing the workflow without making actual releases
-      
+
       - name: Publish to crates.io
         uses: actions-rs/cargo@v1
         with:
